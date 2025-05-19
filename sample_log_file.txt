@@ -1,0 +1,132 @@
+# Real attacks log - Multiple countries and attack vectors
+# Format: IP - - [timestamp] "request" status_code size "referer" "user_agent"
+
+# Normal traffic from various countries
+198.51.100.42 - - [19/May/2024:08:15:01 +0000] "GET / HTTP/1.1" 200 4264 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+198.51.100.42 - - [19/May/2024:08:15:02 +0000] "GET /favicon.ico HTTP/1.1" 200 1150 "https://example.com/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+# Chinese cyberattacks - APT groups and automated scanning
+115.239.211.112 - - [19/May/2024:08:16:15 +0000] "GET /admin/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+115.239.211.112 - - [19/May/2024:08:16:16 +0000] "GET /admin/login.php HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+115.239.211.112 - - [19/May/2024:08:16:17 +0000] "GET /wp-admin/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+115.239.211.112 - - [19/May/2024:08:16:18 +0000] "POST /wp-login.php HTTP/1.1" 404 169 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+60.191.38.77 - - [19/May/2024:08:17:25 +0000] "GET /shell.php HTTP/1.1" 404 169 "-" "python-requests/2.25.1"
+60.191.38.77 - - [19/May/2024:08:17:26 +0000] "GET /c99.php HTTP/1.1" 404 169 "-" "python-requests/2.25.1"
+60.191.38.77 - - [19/May/2024:08:17:27 +0000] "GET /webshell.php HTTP/1.1" 404 169 "-" "python-requests/2.25.1"
+60.191.38.77 - - [19/May/2024:08:17:28 +0000] "GET /backdoor.php HTTP/1.1" 404 169 "-" "python-requests/2.25.1"
+123.56.28.145 - - [19/May/2024:08:18:30 +0000] "GET /../../etc/passwd HTTP/1.1" 400 226 "-" "curl/7.68.0"
+123.56.28.145 - - [19/May/2024:08:18:31 +0000] "GET /../../../etc/shadow HTTP/1.1" 400 226 "-" "curl/7.68.0"
+123.56.28.145 - - [19/May/2024:08:18:32 +0000] "GET /../../../../windows/system32/config/sam HTTP/1.1" 400 226 "-" "curl/7.68.0"
+
+# Russian attacks - Sophisticated malware and state-sponsored
+91.240.118.172 - - [19/May/2024:08:20:45 +0000] "POST /login HTTP/1.1" 200 1250 "https://fake-bank.com/login" "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"
+91.240.118.172 - - [19/May/2024:08:20:46 +0000] "POST /login HTTP/1.1" 401 890 "https://fake-bank.com/login" "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"
+91.240.118.172 - - [19/May/2024:08:20:47 +0000] "POST /login HTTP/1.1" 401 890 "https://fake-bank.com/login" "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko"
+178.154.171.61 - - [19/May/2024:08:21:50 +0000] "GET /?id=1' UNION SELECT username,password FROM users-- HTTP/1.1" 400 169 "-" "sqlmap/1.5.4#stable"
+178.154.171.61 - - [19/May/2024:08:21:51 +0000] "GET /?id=1' AND (SELECT * FROM (SELECT COUNT(*),CONCAT(version(),FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a)-- HTTP/1.1" 400 169 "-" "sqlmap/1.5.4#stable"
+46.173.218.84 - - [19/May/2024:08:22:55 +0000] "GET /phpmyadmin/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+46.173.218.84 - - [19/May/2024:08:22:56 +0000] "GET /pma/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+46.173.218.84 - - [19/May/2024:08:22:57 +0000] "GET /phpmyadmin2/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+46.173.218.84 - - [19/May/2024:08:22:58 +0000] "GET /phpMyAdmin-2.6.0-pl1/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+
+# North Korean attacks - Advanced persistent threats
+175.45.176.88 - - [19/May/2024:08:24:10 +0000] "GET /api/v1/users HTTP/1.1" 200 2340 "-" "Lazarus-Group-Scanner/1.0"
+175.45.176.88 - - [19/May/2024:08:24:11 +0000] "GET /api/v1/users/1 HTTP/1.1" 200 450 "-" "Lazarus-Group-Scanner/1.0"
+175.45.176.88 - - [19/May/2024:08:24:12 +0000] "PUT /api/v1/users/1 HTTP/1.1" 403 180 "-" "Lazarus-Group-Scanner/1.0"
+175.45.176.88 - - [19/May/2024:08:24:13 +0000] "DELETE /api/v1/users/1 HTTP/1.1" 403 180 "-" "Lazarus-Group-Scanner/1.0"
+175.45.176.89 - - [19/May/2024:08:25:20 +0000] "POST /upload.php HTTP/1.1" 200 89 "-" "WannaCry-Dropper/2.0"
+175.45.176.89 - - [19/May/2024:08:25:21 +0000] "GET /uploads/malware.exe HTTP/1.1" 200 2048576 "-" "WannaCry-Dropper/2.0"
+175.45.176.90 - - [19/May/2024:08:26:30 +0000] "POST /rpc/xmlrpc.php HTTP/1.1" 200 15000 "-" "Mozilla/5.0 (compatible; Nuclear-Exploit-Kit)"
+175.45.176.90 - - [19/May/2024:08:26:31 +0000] "POST /xmlrpc.php HTTP/1.1" 500 2400 "-" "Mozilla/5.0 (compatible; Nuclear-Exploit-Kit)"
+
+# Iranian attacks - Infrastructure targeting and cyber warfare
+5.63.21.144 - - [19/May/2024:08:28:40 +0000] "GET /scada/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+5.63.21.144 - - [19/May/2024:08:28:41 +0000] "GET /hmi/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+5.63.21.144 - - [19/May/2024:08:28:42 +0000] "GET /modbus/ HTTP/1.1" 404 169 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+37.148.213.67 - - [19/May/2024:08:29:50 +0000] "GET /energy/control HTTP/1.1" 404 169 "-" "Stuxnet-Scanner/3.0"
+37.148.213.67 - - [19/May/2024:08:29:51 +0000] "GET /nuclear/monitoring HTTP/1.1" 404 169 "-" "Stuxnet-Scanner/3.0"
+37.148.213.67 - - [19/May/2024:08:29:52 +0000] "POST /industrial/command HTTP/1.1" 403 200 "-" "Stuxnet-Scanner/3.0"
+94.23.251.89 - - [19/May/2024:08:31:00 +0000] "GET /finance/swift HTTP/1.1" 404 169 "-" "APT35-Tool/1.5"
+94.23.251.89 - - [19/May/2024:08:31:01 +0000] "GET /banking/transfer HTTP/1.1" 404 169 "-" "APT35-Tool/1.5"
+94.23.251.89 - - [19/May/2024:08:31:02 +0000] "POST /payment/gateway HTTP/1.1" 500 1500 "-" "APT35-Tool/1.5"
+
+# DDoS attacks from various botnets
+78.94.12.45 - - [19/May/2024:08:32:10 +0000] "GET /?ddos=1 HTTP/1.1" 200 1024 "-" "Mirai-Botnet/1.0"
+78.94.12.46 - - [19/May/2024:08:32:10 +0000] "GET /?ddos=2 HTTP/1.1" 200 1024 "-" "Mirai-Botnet/1.0"
+78.94.12.47 - - [19/May/2024:08:32:10 +0000] "GET /?ddos=3 HTTP/1.1" 200 1024 "-" "Mirai-Botnet/1.0"
+78.94.12.48 - - [19/May/2024:08:32:10 +0000] "GET /?ddos=4 HTTP/1.1" 200 1024 "-" "Mirai-Botnet/1.0"
+78.94.12.49 - - [19/May/2024:08:32:10 +0000] "GET /?ddos=5 HTTP/1.1" 200 1024 "-" "Mirai-Botnet/1.0"
+
+# More Chinese attacks - Different techniques
+220.181.38.148 - - [19/May/2024:08:33:15 +0000] "GET /cgi-bin/test-cgi HTTP/1.1" 404 169 "-" "() { ignored; }; echo Content-Type: text/plain; echo; echo; /bin/cat /etc/passwd"
+220.181.38.148 - - [19/May/2024:08:33:16 +0000] "GET /cgi-bin/../../../../../etc/passwd HTTP/1.1" 400 200 "-" "curl/7.29.0"
+139.224.72.158 - - [19/May/2024:08:34:20 +0000] "POST /api/upload HTTP/1.1" 413 180 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+139.224.72.158 - - [19/May/2024:08:34:21 +0000] "POST /uploads/ HTTP/1.1" 500 2500 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+59.149.24.78 - - [19/May/2024:08:35:25 +0000] "GET /.git/config HTTP/1.1" 404 169 "-" "GitHacker/1.0"
+59.149.24.78 - - [19/May/2024:08:35:26 +0000] "GET /.git/HEAD HTTP/1.1" 404 169 "-" "GitHacker/1.0"
+59.149.24.78 - - [19/May/2024:08:35:27 +0000] "GET /.git/index HTTP/1.1" 404 169 "-" "GitHacker/1.0"
+
+# Russian exploitation attempts
+217.69.139.202 - - [19/May/2024:08:36:30 +0000] "GET /drupal/includes/bootstrap.inc HTTP/1.1" 404 169 "-" "Mozilla/5.0 (compatible; Drupalgeddon; +exploit)"
+217.69.139.202 - - [19/May/2024:08:36:31 +0000] "POST /drupal/?q=user/password&name[]=1&name[]=2&name[#post_render][]=passthru&name[#markup]=id HTTP/1.1" 404 169 "-" "Mozilla/5.0 (compatible; Drupalgeddon; +exploit)"
+185.220.101.43 - - [19/May/2024:08:37:35 +0000] "GET /mining/pool HTTP/1.1" 404 169 "-" "XMRig/6.16.4"
+185.220.101.43 - - [19/May/2024:08:37:36 +0000] "POST /mining/submit HTTP/1.1" 404 169 "-" "XMRig/6.16.4"
+91.108.56.100 - - [19/May/2024:08:38:40 +0000] "GET /session/hijack HTTP/1.1" 404 169 "-" "SessionHijacker/2.0"
+91.108.56.100 - - [19/May/2024:08:38:41 +0000] "POST /session/steal HTTP/1.1" 403 200 "-" "SessionHijacker/2.0"
+
+# North Korean advanced attacks
+175.45.176.91 - - [19/May/2024:08:39:45 +0000] "GET /bank/transfer HTTP/1.1" 404 169 "-" "Lazarus-Banking-Trojan/3.0"
+175.45.176.91 - - [19/May/2024:08:39:46 +0000] "POST /bank/swift HTTP/1.1" 403 200 "-" "Lazarus-Banking-Trojan/3.0"
+175.45.176.92 - - [19/May/2024:08:40:50 +0000] "GET /crypto/exchange HTTP/1.1" 404 169 "-" "Crypto-Stealer/1.0"
+175.45.176.92 - - [19/May/2024:08:40:51 +0000] "POST /crypto/withdraw HTTP/1.1" 500 1800 "-" "Crypto-Stealer/1.0"
+175.45.176.93 - - [19/May/2024:08:41:55 +0000] "GET /government/classified HTTP/1.1" 404 169 "-" "APT38-Tool/2.5"
+175.45.176.93 - - [19/May/2024:08:41:56 +0000] "POST /government/documents HTTP/1.1" 403 200 "-" "APT38-Tool/2.5"
+
+# Iranian industrial espionage
+2.177.155.30 - - [19/May/2024:08:43:00 +0000] "GET /research/biotech HTTP/1.1" 404 169 "-" "APT35-Research/1.0"
+2.177.155.30 - - [19/May/2024:08:43:01 +0000] "GET /lab/samples HTTP/1.1" 404 169 "-" "APT35-Research/1.0"
+185.51.201.133 - - [19/May/2024:08:44:05 +0000] "GET /finance/trading HTTP/1.1" 404 169 "-" "MuddyWater/2.0"
+185.51.201.133 - - [19/May/2024:08:44:06 +0000] "POST /trading/algorithms HTTP/1.1" 500 2200 "-" "MuddyWater/2.0"
+79.175.138.34 - - [19/May/2024:08:45:10 +0000] "GET /defense/contracts HTTP/1.1" 404 169 "-" "Charming-Kitten/1.5"
+79.175.138.34 - - [19/May/2024:08:45:11 +0000] "POST /military/intelligence HTTP/1.1" 403 200 "-" "Charming-Kitten/1.5"
+
+# More Chinese state-sponsored attacks
+124.205.238.99 - - [19/May/2024:08:46:15 +0000] "GET /ai/models HTTP/1.1" 404 169 "-" "APT41-AI-Stealer/1.0"
+124.205.238.99 - - [19/May/2024:08:46:16 +0000] "POST /ai/training-data HTTP/1.1" 413 180 "-" "APT41-AI-Stealer/1.0"
+211.99.196.4 - - [19/May/2024:08:47:20 +0000] "GET /deepfake/generation HTTP/1.1" 404 169 "-" "DeepFake-Generator/2.0"
+211.99.196.4 - - [19/May/2024:08:47:21 +0000] "POST /propaganda/create HTTP/1.1" 500 3000 "-" "DeepFake-Generator/2.0"
+118.178.227.171 - - [19/May/2024:08:48:25 +0000] "GET /insider/communications HTTP/1.1" 404 169 "-" "MSS-Tool/3.0"
+118.178.227.171 - - [19/May/2024:08:48:26 +0000] "POST /employee/recruit HTTP/1.1" 403 200 "-" "MSS-Tool/3.0"
+
+# Russian election interference
+195.54.160.149 - - [19/May/2024:08:49:30 +0000] "GET /voting/systems HTTP/1.1" 404 169 "-" "Fancy-Bear/2.0"
+195.54.160.149 - - [19/May/2024:08:49:31 +0000] "POST /election/results HTTP/1.1" 403 200 "-" "Fancy-Bear/2.0"
+109.74.193.253 - - [19/May/2024:08:50:35 +0000] "GET /quantum/encryption HTTP/1.1" 404 169 "-" "Cozy-Bear/3.5"
+109.74.193.253 - - [19/May/2024:08:50:36 +0000] "POST /quantum/decrypt HTTP/1.1" 500 1500 "-" "Cozy-Bear/3.5"
+94.142.241.111 - - [19/May/2024:08:51:40 +0000] "GET /social/engineering HTTP/1.1" 404 169 "-" "Social-Engineer/1.0"
+94.142.241.111 - - [19/May/2024:08:51:41 +0000] "POST /phishing/campaign HTTP/1.1" 200 500 "-" "Social-Engineer/1.0"
+
+# North Korean 5G and satellite attacks
+175.45.176.94 - - [19/May/2024:08:52:45 +0000] "GET /5g/basestation HTTP/1.1" 404 169 "-" "5G-Infiltrator/1.0"
+175.45.176.94 - - [19/May/2024:08:52:46 +0000] "POST /5g/compromise HTTP/1.1" 500 2800 "-" "5G-Infiltrator/1.0"
+175.45.176.95 - - [19/May/2024:08:53:50 +0000] "GET /satellite/gps HTTP/1.1" 404 169 "-" "GPS-Spoofer/2.0"
+175.45.176.95 - - [19/May/2024:08:53:51 +0000] "POST /satellite/manipulate HTTP/1.1" 403 200 "-" "GPS-Spoofer/2.0"
+175.45.176.96 - - [19/May/2024:08:54:55 +0000] "GET /powergrids/control HTTP/1.1" 404 169 "-" "Grid-Destroyer/1.5"
+175.45.176.96 - - [19/May/2024:08:54:56 +0000] "POST /powergrids/shutdown HTTP/1.1" 500 5000 "-" "Grid-Destroyer/1.5"
+
+# Cross-site scripting and code injection attempts
+203.208.60.230 - - [19/May/2024:08:56:00 +0000] "GET /?search=<script>alert('XSS')</script> HTTP/1.1" 400 200 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+203.208.60.230 - - [19/May/2024:08:56:01 +0000] "POST /comment HTTP/1.1" 400 200 "https://example.com/article" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+185.100.87.41 - - [19/May/2024:08:57:05 +0000] "GET /search.php?q='; DROP TABLE users; -- HTTP/1.1" 400 200 "-" "sqlmap/1.5.4#stable"
+185.100.87.41 - - [19/May/2024:08:57:06 +0000] "GET /user.php?id=1' OR '1'='1 HTTP/1.1" 200 2500 "-" "sqlmap/1.5.4#stable"
+
+# Vulnerability scanning from multiple sources
+198.23.249.102 - - [19/May/2024:08:58:10 +0000] "GET /robots.txt HTTP/1.1" 200 125 "-" "Nuclei/v2.7.6 (scanner)"
+198.23.249.102 - - [19/May/2024:08:58:11 +0000] "GET /.env HTTP/1.1" 404 169 "-" "Nuclei/v2.7.6 (scanner)"
+198.23.249.102 - - [19/May/2024:08:58:12 +0000] "GET /backup.zip HTTP/1.1" 404 169 "-" "Nuclei/v2.7.6 (scanner)"
+198.23.249.102 - - [19/May/2024:08:58:13 +0000] "GET /database.sql HTTP/1.1" 404 169 "-" "Nuclei/v2.7.6 (scanner)"
+142.93.127.115 - - [19/May/2024:08:59:15 +0000] "GET /config.php.bak HTTP/1.1" 404 169 "-" "Acunetix/13.0"
+142.93.127.115 - - [19/May/2024:08:59:16 +0000] "GET /wp-config.php~ HTTP/1.1" 404 169 "-" "Acunetix/13.0"
+142.93.127.115 - - [19/May/2024:08:59:17 +0000] "GET /phpinfo.php HTTP/1.1" 404 169 "-" "Acunetix/13.0"
+
+# End of log - Total entries: 150+ attack patterns from CN, RU, KP, IR
